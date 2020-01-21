@@ -1,3 +1,3 @@
 # Docker for Easy PHP Development
 
-localhost:10000
+http://localhost:10000
