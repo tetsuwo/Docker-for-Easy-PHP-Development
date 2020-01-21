@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  web:
+    build: .cloud/docker/web
+    ports:
+      - '10000:80'
+    depends_on:
+      - ap
+    volumes:
+      - .:/var/www/html
+  ap:
+    build: .cloud/docker/php
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: study
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+volumes:
+  mysql-data:
